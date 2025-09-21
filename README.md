@@ -1,1 +1,1 @@
-# Farrat-Langauge
+# Navqor
