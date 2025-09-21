@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navqor Lesson 10</title>
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f0f1f; color: #e0e0f0; margin: 0; padding: 0; }
+header { background-color: #1f1f3f; padding: 1rem; text-align: center; }
+header h1 { margin: 0; color: #a0e0ff; }
+nav { background-color: #222240; padding: 0.5rem; display: flex; flex-wrap: wrap; justify-content: center; }
+nav a { margin: 0.2rem; padding: 0.5rem 1rem; text-decoration: none; color: #e0e0f0; background-color: #444466; border-radius: 5px; transition: background 0.3s; }
+nav a.active { background-color: #a0e0ff; color: #0f0f1f; }
+nav a:hover { background-color: #80ff80; color: #0f0f1f; }
+main { padding: 2rem; max-width: 1000px; margin: auto; }
+h2 { color: #a0c0ff; margin-top: 2rem; }
+.entity { margin: 1rem 0; }
+.quantum-button { margin: 0.2rem; padding: 0.5rem 1rem; background-color: #444466; color: #e0e0f0; border: none; cursor: pointer; border-radius: 5px; }
+.quantum-button.selected { background-color: #ffb380; color: #0f0f1f; }
+.superposition-display { margin-top: 0.5rem; padding: 0.5rem; background-color: #1f1f2f; border-left: 4px solid #80ff80; font-family: monospace; min-height: 30px; }
+#ritual { margin-top: 1rem; padding: 1rem; background-color: #1f1f2f; border-left: 4px solid #ffb380; min-height: 60px; font-family: monospace; }
+button.clear, button.add, button.collapse, button.submit { margin-top: 0.5rem; padding: 0.5rem 1rem; cursor: pointer; border-radius: 5px; border: none; }
+button.clear { background-color: #ff8080; color: #0f0f1f; }
+button.add { background-color: #80bfff; color: #0f0f1f; margin-left: 0.5rem; }
+button.collapse { background-color: #ffb380; color: #0f0f1f; margin-left: 0.5rem; }
+button.submit { background-color: #80ff80; color: #0f0f1f; }
+svg { width: 100%; height: 350px; background-color: #1f1f2f; border: 1px solid #444; border-radius: 5px; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>Lesson 10: Ritual Composition and Mastery</h1>
+</header>
+
+<!-- Lessons Navigation -->
+<nav>
+<a href="1.html">Lesson 1</a>
+<a href="2.html">Lesson 2</a>
+<a href="3.html">Lesson 3</a>
+<a href="4.html">Lesson 4</a>
+<a href="5.html">Lesson 5</a>
+<a href="6.html">Lesson 6</a>
+<a href="7.html">Lesson 7</a>
+<a href="8.html">Lesson 8</a>
+<a href="9.html">Lesson 9</a>
+<a href="10.html" class="active">Lesson 10</a>
+</nav>
+
+<main>
+<h2>Overview</h2>
+<p>Lesson 10 allows you to **compose full Navqor rituals**, combining multi-entity superpositions, entanglements, and story sequences. You can collapse states dynamically to produce a single ritual interpretation.</p>
+
+<div class="entity" id="entity-A">
+<strong>Entity A:</strong><br>
+<button class="quantum-button" data-state="Q0">Q₀</button>
+<button class="quantum-button" data-state="Q1">Q₁</button>
+<button class="quantum-button" data-state="Q2">Q₂</button>
+<button class="quantum-button" data-state="Q3">Q₃</button>
+<button class="quantum-button" data-state="Q4">Q₄</button>
+<button class="quantum-button" data-state="Q5">Q₅</button>
+<button class="quantum-button" data-state="Q6">Q₆</button>
+<button class="quantum-button" data-state="Q7">Q₇</button>
+<button class="quantum-button" data-state="Q8">Q₈</button>
+<div class="superposition-display" id="superposition-A">Current: None</div>
+</div>
+
+<div class="entity" id="entity-B">
+<strong>Entity B:</strong><br>
+<button class="quantum-button" data-state="Q0">Q₀</button>
+<button class="quantum-button" data-state="Q1">Q₁</button>
+<button class="quantum-button" data-state="Q2">Q₂</button>
+<button class="quantum-button" data-state="Q3">Q₃</button>
+<button class="quantum-button" data-state="Q4">Q₄</button>
+<button class="quantum-button" data-state="Q5">Q₅</button>
+<button class="quantum-button" data-state="Q6">Q₆</button>
+<button class="quantum-button" data-state="Q7">Q₇</button>
+<button class="quantum-button" data-state="Q8">Q₈</button>
+<div class="superposition-display" id="superposition-B">Current: None</div>
+</div>
+
+<div class="entity" id="entity-C">
+<strong>Entity C:</strong><br>
+<button class="quantum-button" data-state="Q0">Q₀</button>
+<button class="quantum-button" data-state="Q1">Q₁</button>
+<button class="quantum-button" data-state="Q2">Q₂</button>
+<button class="quantum-button" data-state="Q3">Q₃</button>
+<button class="quantum-button" data-state="Q4">Q₄</button>
+<button class="quantum-button" data-state="Q5">Q₅</button>
+<button class="quantum-button" data-state="Q6">Q₆</button>
+<button class="quantum-button" data-state="Q7">Q₇</button>
+<button class="quantum-button" data-state="Q8">Q₈</button>
+<div class="superposition-display" id="superposition-C">Current: None</div>
+</div>
+
+<button class="clear">Clear Selection</button>
+<button class="add">Add to Ritual</button>
+<button class="collapse">Collapse Ritual Segment</button>
+<button class="submit">Submit Ritual</button>
+
+<div id="ritual">Your ritual sequence will appear here...</div>
+<svg id="entanglement-map"></svg>
+</main>
+
+<script>
+// Setup entity selections
+function setupEntity(entityId, displayId){
+    const entity = document.getElementById(entityId);
+    const display = document.getElementById(displayId);
+    let selected=[];
+    entity.querySelectorAll('.quantum-button').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            const state=btn.dataset.state;
+            if(selected.includes(state)){
+                selected = selected.filter(s=>s!==state);
+                btn.classList.remove('selected');
+            } else {
+                selected.push(state);
+                btn.classList.add('selected');
+            }
+            display.textContent='Current: '+(selected.length?selected.join(' + '):'None');
+            drawEntanglement();
+        });
+    });
+    return ()=>selected;
+}
+
+const getA = setupEntity('entity-A','superposition-A');
+const getB = setupEntity('entity-B','superposition-B');
+const getC = setupEntity('entity-C','superposition-C');
+
+let ritual = [];
+
+document.querySelector('.add').addEventListener('click',()=>{
+    ritual.push({
+        A: getA().slice(),
+        B: getB().slice(),
+        C: getC().slice()
+    });
+    updateRitualDisplay();
+});
+
+document.querySelector('.clear').addEventListener('click',()=>{
+    ['entity-A','entity-B','entity-C'].forEach(id=>{
+        document.getElementById(id).querySelectorAll('.quantum-button').forEach(b=>b.classList.remove('selected'));
+    });
+    ['superposition-A','superposition-B','superposition-C'].forEach(id=>{
+        document.getElementById(id).textContent='Current: None';
+    });
+    drawEntanglement();
+});
+
+document.querySelector('.collapse').addEventListener('click',()=>{
+    ritual.forEach(seg=>{
+        ['A','B','C'].forEach(key=>{
+            const states = seg[key];
+            if(states.length) seg[key] = [states[Math.floor(Math.random()*states.length)]];
+        });
+    });
+    updateRitualDisplay();
+});
+
+document.querySelector('.submit').addEventListener('click',()=>{
+    alert('Final Ritual:\n'+JSON.stringify(ritual,null,2));
+});
+
+function updateRitualDisplay(){
+    const div=document.getElementById('ritual');
+    div.innerHTML = ritual.map((seg,i)=>{
+        return `<strong>Segment ${i+1}:</strong> A: ${seg.A.join(' + ')||'None'}, B: ${seg.B.join(' + ')||'None'}, C: ${seg.C.join(' + ')||'None'}`;
+    }).join('<br>');
+    drawEntanglement();
+}
+
+// Entanglement visualization
+function drawEntanglement(){
+    const svg = document.getElementById('entanglement-map');
+    svg.innerHTML='';
+    const entities=[getA(),getB(),getC()];
+    const spacingY=100;
+    entities.forEach((states,ei)=>{
+        states.forEach((s,si)=>{
+            const x=50+si*100;
+            const y=50+ei*spacingY;
+            const circle=document.createElementNS("http://www.w3.org/2000/svg",'circle');
+            circle.setAttribute('cx',x); circle.setAttribute('cy',y);
+            circle.setAttribute('r',15); circle.setAttribute('fill','#ffb380');
+            svg.appendChild(circle);
+            const text=document.createElementNS("http://www.w3.org/2000/svg",'text');
+            text.setAttribute('x',x); text.setAttribute('y',y+5);
+            text.setAttribute('text-anchor','middle'); text.setAttribute('fill','#0f0f1f'); text.textContent=s;
+            svg.appendChild(text);
+        });
+    });
+    const positions=entities.map((states,ei)=>states.map((s,si)=>[50+si*100,50+ei*spacingY]));
+    for(let i=0;i<positions.length-1;i++){
+        positions[i].forEach(([x1,y1])=>{
+            positions[i+1].forEach(([x2,y2])=>{
+                const line=document.createElementNS("http://www.w3.org/2000/svg",'line');
+                line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+                line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+                line.setAttribute('stroke','#ff80ff'); line.setAttribute('stroke-width','2');
+                svg.appendChild(line);
+            });
+        });
+    }
+}
+</script>
+
+</body>
+</html>
